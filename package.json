@@ -2,7 +2,7 @@
   "name": "checkout-script",
   "version": "1.0.0",
   "description": "launch script for checkout ui",
-  "main": "index.js",
+  "main": "index.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

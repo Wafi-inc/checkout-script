@@ -1,5 +1,5 @@
 {
-  "name": "checkout-script",
+  "name": "@wafi/checkout-script",
   "version": "1.0.0",
   "description": "launch script for checkout ui",
   "main": "index.min.js",

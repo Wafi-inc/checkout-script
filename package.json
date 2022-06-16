@@ -2,10 +2,14 @@
   "name": "wafi-checkout",
   "version": "1.0.0",
   "description": "launch script for checkout ui",
-  "main": "index.min.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "os-browserify": "^0.3.0"
+  }
 }

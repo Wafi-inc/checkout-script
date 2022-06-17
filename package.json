@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "wafi-checkout",
   "version": "1.0.0",
   "description": "launch script for checkout ui",

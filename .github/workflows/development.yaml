@@ -25,4 +25,4 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
         
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync --exclude="*" --include="*.js" s3://checkoutscript.wafi.cash  --delete
+        run: aws s3 sync --exclude="*" --include="*.js" s3://checkoutscript.wafi.cash .

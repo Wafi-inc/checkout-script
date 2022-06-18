@@ -1,9 +1,8 @@
 {
-  "type": "module",
   "name": "wafi-checkout",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "launch script for checkout ui",
-  "main": "index.js",
+  "main": "index.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

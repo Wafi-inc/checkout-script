@@ -31,4 +31,4 @@ const WafiCheckout = {
   },
 };
 
-module.exports = WafiCheckout;
+export default WafiCheckout;

@@ -10,11 +10,17 @@
   const WafiCheckout = {
     launch: (url, options) => {
       const { selector, success, cancel, error } = options;
-      const el = document.getElementById(selector);
-      el.setAttribute("src", url);
+      // const el = document.getElementById(selector);
+      // el.setAttribute("src", url);
+      window.open(
+        url,
+        "popUpWindow",
+        "height=500,width=500,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes"
+      );
       window.addEventListener(
         "message",
         function (messageEvent) {
+          console.log("message got here");
           if (!hosts.includes(messageEvent.origin)) return;
           const { event, data } = messageEvent.data;
 

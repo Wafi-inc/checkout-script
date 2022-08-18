@@ -18,7 +18,7 @@
         "height=500,width=500,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes"
       );
       popUp.postMessage("hello");
-      popUp.parent.postMessage("hello");
+      popUp.opener.postMessage("hello");
 
       window.addEventListener(
         "message",
@@ -39,7 +39,8 @@
         },
         false
       );
-      popUp.postMessage("hello");
+      popUp.postMessage("hello -end");
+      popUp.opener.postMessage("hello - end");
     },
   };
   window["WafiCheckout"] = WafiCheckout;

@@ -20,7 +20,7 @@ const WafiCheckout = {
       function (messageEvent) {
         console.log("message got here - index", messageEvent);
 
-        if (!hosts.includes(messageEvent.origin)) return;
+        // if (!hosts.includes(messageEvent.origin)) return;
         const { event, data } = messageEvent.data;
 
         if (event === "success" && success) {

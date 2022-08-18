@@ -18,6 +18,8 @@ const WafiCheckout = {
     window.addEventListener(
       "message",
       function (messageEvent) {
+        console.log("message got here - index");
+
         if (!hosts.includes(messageEvent.origin)) return;
         const { event, data } = messageEvent.data;
 

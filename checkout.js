@@ -20,8 +20,8 @@
       window.addEventListener(
         "message",
         function (messageEvent) {
-          console.log("message got here");
-          if (!hosts.includes(messageEvent.origin)) return;
+          console.log("message got here", messageEvent);
+          // if (!hosts.includes(messageEvent.origin)) return;
           const { event, data } = messageEvent.data;
 
           if (event === "success" && success) {

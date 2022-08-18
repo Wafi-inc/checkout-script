@@ -26,3 +26,6 @@ jobs:
         
       - name: Deploy app build to S3 bucket
         run:  aws s3 cp . s3://checkoutscript.wafi.cash/ --exclude "*" --include "*.js" --recursive
+        
+      - name: Invalidate aws cloudfront
+        run: aws cloudfront create-invalidation  --distribution-id E3V8EN54PNE3W3	 --paths "/*"

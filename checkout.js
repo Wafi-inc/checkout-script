@@ -23,6 +23,11 @@
           "popUpWindow",
           'resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,width=' + width + ', height=' + height + ', top='+ top + ', left=' + left +',status=yes'
         );
+
+        if (!popUp || popUp.closed || typeof popUp.closed == "undefined") {
+          //...
+          window.location.replace(url)
+        }
       })
       btn.click()
 

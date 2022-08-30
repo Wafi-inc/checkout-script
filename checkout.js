@@ -10,12 +10,21 @@
   const WafiCheckout = {
     launch: (url, options) => {
       const { success, cancel, error } = options;
+      let popUp;
+      let height = 500;
+      let width = 500;
+      var left = ( screen.width - width ) / 2;
+      var top = ( screen.height - height ) / 2;
 
-      const popUp = window.open(
-        url,
-        "popUpWindow",
-        "height=500,width=500,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes"
-      );
+      let btn = document.createElement("button");
+      btn.addEventListener('click',()=>{
+        popUp = window.open(
+          url,
+          "popUpWindow",
+          'resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes,+width=' + width + ', height=' + height + ', top='+ top + ', left=' + left
+        );
+      })
+      btn.click()
 
       window.addEventListener(
         "message",

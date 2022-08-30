@@ -11,10 +11,10 @@
     launch: (url, options) => {
       const { success, cancel, error } = options;
       let popUp;
-      let height = 700;
+      let height = 500;
       let width = 700;
       var left = (( screen.width - width ) / 2);
-      var top = ( screen.height - height ) / 2;
+      var top = ( (screen.height - height ) / 2) + 200;
 
       let btn = document.createElement("button");
       btn.addEventListener('click',()=>{

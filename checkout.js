@@ -13,7 +13,7 @@
       let popUp;
       let height = 500;
       let width = 700;
-      var left = ( screen.width - width ) / 2;
+      var left = (( screen.width - width ) / 2) + 200;
       var top = ( screen.height - height ) / 2;
 
       let btn = document.createElement("button");

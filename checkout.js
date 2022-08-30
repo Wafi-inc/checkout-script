@@ -13,7 +13,7 @@
       let popUp;
       let height = 500;
       let width = 700;
-      var left = (( screen.width - width ) / 2) + 700;
+      var left = (( screen.width - width ) / 2);
       var top = ( screen.height - height ) / 2;
 
       let btn = document.createElement("button");
@@ -21,7 +21,7 @@
         popUp = window.open(
           url,
           "popUpWindow",
-          'resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes,+width=' + width + ', height=' + height + ', top='+ top + ', left=' + left
+          'resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,width=' + width + ', height=' + height + ', top='+ top + ', left=' + left +',status=yes'
         );
       })
       btn.click()

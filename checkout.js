@@ -8,8 +8,8 @@
     );
 
   const WafiCheckout = {
-    launch: (url, options) => {
-      const { success, cancel, error } = options;
+    launch: (url) => {
+      // const { success, cancel, error } = options;
       // let popUp;
       // let height = 500;
       // let width = 700;
@@ -35,24 +35,25 @@
 
       window.location.replace(url)
       
-      window.addEventListener(
-        "message",
-        function (messageEvent) {
-          if (!hosts.includes(messageEvent.origin)) return;
-          const { event, data } = messageEvent.data;
+     
+      // window.addEventListener(
+      //   "message",
+      //   function (messageEvent) {
+      //     if (!hosts.includes(messageEvent.origin)) return;
+      //     const { event, data } = messageEvent.data;
 
-          if (event === "success" && success) {
-            success(data);
-            popUp.close();
-          }
-          if (event === "error" && error) error(data);
-          if (event === "cancel" && cancel) {
-            cancel(data);
-            popUp.close();
-          }
-        },
-        false
-      );
+      //     if (event === "success" && success) {
+      //       success(data);
+      //       popUp.close();
+      //     }
+      //     if (event === "error" && error) error(data);
+      //     if (event === "cancel" && cancel) {
+      //       cancel(data);
+      //       popUp.close();
+      //     }
+      //   },
+      //   false
+      // );
     },
   };
   window["WafiCheckout"] = WafiCheckout;

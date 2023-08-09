@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="display: flex; align-items: flex-start; flex-direction: column; padding: 0 80px;">
+    <h2>Home Page Banner</h2>
+    <wafi-checkout-learn-more type="pay"></wafi-checkout-learn-more>
+    <wafi-checkout-learn-more type="checkout"></wafi-checkout-learn-more>
+    <wafi-checkout-learn-more type="donate"></wafi-checkout-learn-more>
+
+    
+    <h2>Home Pay Select Btn</h2>
+    <wafi-pay-select styleType="white"></wafi-pay-select>
+    <wafi-pay-select styleType="back"></wafi-pay-select>
+    <wafi-pay-select></wafi-pay-select>
+
+    <h2>Pay Buttons</h2>
+    <div>
+      <apple-pay-button buttonstyle="black" type="buy"></apple-pay-button>
+    </div>
+
+    <div style="display: flex">
+      <div class="left-container">
+        <wafi-btn btnstyle="black" btnType="pay"></wafi-btn>
+        <wafi-btn btnstyle="black" btnType="checkout"></wafi-btn>
+        <wafi-btn btnstyle="black" btnType="donate"></wafi-btn>
+        <wafi-btn btnstyle="black" btnType="continue"></wafi-btn>
+        <wafi-btn ></wafi-btn>
+        <wafi-btn btnstyle="black" btnType="subscribe"></wafi-btn>
+        <wafi-btn btnstyle="black" btnType="reload"></wafi-btn>
+        <wafi-btn btnstyle="black" btnType="top-up"></wafi-btn>
+        <wafi-btn btnstyle="black" btnType="buy"></wafi-btn>
+        <wafi-btn btnstyle="black" btnType="order"></wafi-btn>
+        <wafi-btn btnstyle="black" btnType="tip"></wafi-btn>
+      </div>
+      
+      <div class="right-container">
+        <wafi-btn btnstyle="white" btnType="pay"></wafi-btn>
+        <wafi-btn btnstyle="white" btnType="checkout"></wafi-btn>
+        <wafi-btn btnstyle="white" btnType="donate"></wafi-btn>
+        <wafi-btn btnstyle="white" btnType="continue"></wafi-btn>
+        <wafi-btn btnstyle="white"></wafi-btn>
+        <wafi-btn btnstyle="white" btnType="subscribe"></wafi-btn>
+        <wafi-btn btnstyle="white" btnType="reload"></wafi-btn>
+        <wafi-btn btnstyle="white" btnType="top-up"></wafi-btn>
+        <wafi-btn btnstyle="white" btnType="buy"></wafi-btn>
+        <wafi-btn btnstyle="white" btnType="order"></wafi-btn>
+        <wafi-btn btnstyle="white" btnType="tip"></wafi-btn>
+      </div>
+    </div>
+    <br />
+
+
+    <style>
+      @font-face {
+      font-family: Cochin;
+      src: url(assets/fonts/Cochin.ttf);
+    }  
+    h2{
+      font-family: Cochin;
+    }
+      .wafi-btn {
+        color: black;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 5px;
+        border: 0px;
+        width: 280px;
+        height: 50px;
+        margin: 5px;
+        cursor: pointer;
+        /* font-family: Octarine; */
+      }
+      .left-container {
+        background-color: white;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+      .right-container {
+        background-color: black;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+    </style>
+    <script src="https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

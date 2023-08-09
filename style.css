@@ -1,0 +1,20 @@
+@font-face {
+    font-family: OctarineBold;
+    font-weight: bold;
+    src: url(./assets/fonts/Octarine-Bold.otf);
+}        
+
+@font-face {
+  font-family: Roboto;
+  src: url(./assets/fonts/RobotoCondensed-Regular.ttf);
+}        
+
+@font-face {
+  font-family: Cochin;
+  src: url(./assets/fonts/Cochin.ttf);
+}        
+
+@font-face {
+    font-family: OctarineLight;
+    src: url(./assets/fonts/Octarine-Light.otf);
+}        

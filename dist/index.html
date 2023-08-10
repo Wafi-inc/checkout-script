@@ -5,17 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body style="display: flex; align-items: flex-start; flex-direction: column; padding: 0 80px;">
+  <body
+    style="
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      padding: 0 80px;
+    "
+  >
     <h2>Home Page Banner</h2>
     <wafi-checkout-learn-more type="pay"></wafi-checkout-learn-more>
     <wafi-checkout-learn-more type="checkout"></wafi-checkout-learn-more>
     <wafi-checkout-learn-more type="donate"></wafi-checkout-learn-more>
 
-    
-    <h2>Home Pay Select Btn</h2>
-    <wafi-pay-select styleType="white"></wafi-pay-select>
-    <wafi-pay-select styleType="back"></wafi-pay-select>
-    <wafi-pay-select></wafi-pay-select>
+    <h2>Wafi Mark</h2>
+    <wafi-mark styleType="white"></wafi-mark>
+    <wafi-mark styleType="back"></wafi-mark>
+    <wafi-mark></wafi-mark>
+
+    <h2>Wafi promotion text</h2>
+    <wafi-promotion-text withLearnMore></wafi-promotion-text>
+    <br />
+    <wafi-promotion-text withLearnMore="hello"></wafi-promotion-text>
+    <br />
+    <wafi-promotion-text></wafi-promotion-text>
 
     <h2>Pay Buttons</h2>
     <div>
@@ -28,7 +41,7 @@
         <wafi-btn btnstyle="black" btnType="checkout"></wafi-btn>
         <wafi-btn btnstyle="black" btnType="donate"></wafi-btn>
         <wafi-btn btnstyle="black" btnType="continue"></wafi-btn>
-        <wafi-btn ></wafi-btn>
+        <wafi-btn></wafi-btn>
         <wafi-btn btnstyle="black" btnType="subscribe"></wafi-btn>
         <wafi-btn btnstyle="black" btnType="reload"></wafi-btn>
         <wafi-btn btnstyle="black" btnType="top-up"></wafi-btn>
@@ -36,7 +49,7 @@
         <wafi-btn btnstyle="black" btnType="order"></wafi-btn>
         <wafi-btn btnstyle="black" btnType="tip"></wafi-btn>
       </div>
-      
+
       <div class="right-container">
         <wafi-btn btnstyle="white" btnType="pay"></wafi-btn>
         <wafi-btn btnstyle="white" btnType="checkout"></wafi-btn>
@@ -55,12 +68,12 @@
 
     <style>
       @font-face {
-      font-family: Cochin;
-      src: url(../assets/fonts/Cochin.ttf);
-    }  
-    h2{
-      font-family: Cochin;
-    }
+        font-family: Cochin;
+        src: url(../assets/fonts/Cochin.ttf);
+      }
+      h2 {
+        font-family: Cochin;
+      }
       .wafi-btn {
         color: black;
         background-color: white;

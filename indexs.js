@@ -136,8 +136,8 @@ style="
   overflow-y: scroll;
   left: 0;
   top: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: #000000a3;
   display: none;
   align-items: center;
@@ -444,8 +444,9 @@ customElements.define("wafi-mark", WafiMark);
 // *******************************
 
 class wafiPromotionText extends HTMLElement {
-  connectedCallback() {
+  async connectedCallback() {
     let withLearnMore = this.attributes?.withLearnMore?.value;
+    let merchantId = this.attributes?.merchantId?.value;
 
     console.log(
       "you have selected withLearnMore: ",
@@ -459,9 +460,43 @@ class wafiPromotionText extends HTMLElement {
       withLearnMore = true;
     }
 
+    let merchantPromotions;
+    // call api here to get merchants promotion
+    async function getPromotions() {
+      let url = `https://dev-api.wafi.cash/api/v1/checkout/clientpromotion/${merchantId}`;
+      try {
+        let res = await fetch(url);
+        return await res.json();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    if (merchantId) {
+      merchantPromotions = await getPromotions();
+    }
+    let promotionText;
+    if (merchantPromotions?.data?.length > 0) {
+      const promotion = merchantPromotions?.data.filter(
+        (p) => p?.min_spend_amount > 0
+      )[0];
+
+      promotionText =
+        promotion?.type === "percent"
+          ? `Get ${promotion?.percent}% cash back`
+          : `Get $${promotion?.amount} cash back`;
+      if (promotion?.min_spend_amount) {
+        promotionText += ` when you spend $${promotion?.min_spend_amount}`;
+      }
+    } else {
+      promotionText = "Get 0.75% cash back";
+    }
+
+    console.log("merchantPromotions", merchantPromotions);
+
     this.innerHTML = `
     <div style="display: flex; align-items: center; font-family: OctarineLight; font-size: 16px;">
-      <span style="color: #2C39D1; cursor:pointer; margin-left:3px;"> Get 0.75% cash back</span>
+      <span style="color: #2C39D1; cursor:pointer; margin-left:3px;"> ${promotionText}</span>
           ${
             withLearnMore
               ? `<span class="wafi-learn-more-open"

@@ -5,8 +5,8 @@ module.exports = {
   mode: "production",
   entry: "./indexs.js",
   output: {
-    filename: "checkout.min.js",
-    path: path.resolve(__dirname, ""),
+    filename: "index.min.js",
+    path: path.resolve(__dirname, "dist"),
   },
 
   optimization: {

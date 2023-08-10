@@ -5,14 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body
-    style="
-      display: flex;
-      align-items: flex-start;
-      flex-direction: column;
-      padding: 0 80px;
-    "
-  >
+  <body>
     <h2>Home Page Banner</h2>
     <wafi-checkout-learn-more type="pay"></wafi-checkout-learn-more>
     <wafi-checkout-learn-more type="checkout"></wafi-checkout-learn-more>
@@ -24,7 +17,10 @@
     <wafi-mark></wafi-mark>
 
     <h2>Wafi promotion text</h2>
-    <wafi-promotion-text withLearnMore></wafi-promotion-text>
+    <wafi-promotion-text
+      merchantId="34c27baa-da78-4239-a879-b3e1172dfc56"
+      withLearnMore
+    ></wafi-promotion-text>
     <br />
     <wafi-promotion-text withLearnMore="hello"></wafi-promotion-text>
     <br />
@@ -35,7 +31,7 @@
       <apple-pay-button buttonstyle="black" type="buy"></apple-pay-button>
     </div>
 
-    <div style="display: flex">
+    <div style="display: flex" class="btns-container">
       <div class="left-container">
         <wafi-btn btnstyle="black" btnType="pay"></wafi-btn>
         <wafi-btn btnstyle="black" btnType="checkout"></wafi-btn>
@@ -71,6 +67,12 @@
         font-family: Cochin;
         src: url(../assets/fonts/Cochin.ttf);
       }
+      body {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 0 80px;
+      }
       h2 {
         font-family: Cochin;
       }
@@ -89,6 +91,18 @@
         margin: 5px;
         cursor: pointer;
         /* font-family: Octarine; */
+      }
+      .btns-container {
+        display: flex;
+      }
+      @media screen and (max-width: 600px) {
+        .btns-container {
+          display: flex;
+          flex-direction: column;
+        }
+        body {
+          padding: 0 10px;
+        }
       }
       .left-container {
         background-color: white;

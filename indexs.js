@@ -68,6 +68,7 @@ import "./style.css";
 // *******************************
 const wafiBtnTypes = {
   pay: "Pay with ",
+  "pay-now": "Pay now with ",
   checkout: "Checkout with ",
   continue: "Continue with ",
   donate: "Donate with ",
@@ -75,6 +76,7 @@ const wafiBtnTypes = {
   reload: "Reload with ",
   "top-up": "Top up with ",
   buy: "Buy with ",
+  "buy-now": "Buy now with ",
   order: "Order with ",
   tip: "Tip with ",
   book: "Book with ",
@@ -96,13 +98,18 @@ class WafiBtn extends HTMLElement {
       btnstyle = "black";
     }
 
+    this.style.width = "280px";
+    this.style.height = "50px";
+    this.style.margin = "5px";
+    this.style.display = "flex";
+
     this.innerHTML = `
 
     <button style="
     color: ${wafiBtnStyles[btnstyle]};
         background-color: ${btnstyle};
-        width: 280px;
-        height: 50px;
+        width: 100%;
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -110,12 +117,11 @@ class WafiBtn extends HTMLElement {
         font-weight: bold;
         border-radius: 5px;
         border: 0px;
-        margin: 5px;
         cursor: pointer;
         font-family: OctarineBold; ">
-        ${btnText}
-        <span style="margin-left: 10px">
-      <img width="80px" src=${
+       <p> ${btnText}</p>
+        <span style="margin-left: 10px; width: 30%;">
+      <img width="100%" src=${
         btnstyle == "black" ? wafiLogoWhite : wafiLogo
       } alt="" />
       </span>
@@ -403,6 +409,8 @@ const wafiMarkStyles = { black: "white", white: "black" };
 class WafiMark extends HTMLElement {
   connectedCallback() {
     let styleType = this.attributes?.styleType?.value;
+    let width = this.attributes?.width?.value;
+    let height = this.attributes?.height?.value;
     console.log("you have selected type: ", styleType);
 
     if (!Object.values(wafiMarkStyles).includes(styleType)) {
@@ -411,13 +419,38 @@ class WafiMark extends HTMLElement {
       styleType = "black";
     }
 
+    if (height !== undefined && width !== undefined) {
+      // if both with and height is provided then we should just use only the width
+      console.warn(
+        "Provide either width or height but not both to the 'wafi-mark' element"
+      );
+      height = undefined;
+    }
+
+    if (height === undefined && width === undefined) {
+      // if both were not provided then we use a default value of 100px for the height
+      width = 100;
+    }
+
+    // this ensures that the aspect ratio is intact
+    if (width === undefined) {
+      width = (height * 100) / 45;
+    }
+    if (height === undefined) {
+      height = (width * 45) / 100;
+    }
+
+    this.style.width = `${width}px`;
+    this.style.height = `${height}px`;
+    this.style.margin = "8px";
+
     this.innerHTML = `
-    <div style="display: flex; align-items: center; font-family: OctarineLight;">
     <button style="
     color: ${wafiMarkStyles[styleType]};
+    font-family: OctarineLight;
         background-color: ${styleType};
-        width: 100px;
-        height: 45px;
+        width: 100%;
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -425,15 +458,11 @@ class WafiMark extends HTMLElement {
         font-weight: bold;
         border-radius: 5px;
         border: ${styleType === "white" ? "4px solid black" : "0px"};
-        margin: 8px;
         cursor: pointer;">
-        <span style="margin-left: 0px">
-        <img width="80px" src=${
+        <img width="90%" src=${
           styleType == "black" ? wafiLogoWhite : wafiLogo
         } alt="" />
-        </span>
         </button>
-        </div>
       `;
   }
 }
@@ -446,7 +475,7 @@ customElements.define("wafi-mark", WafiMark);
 class wafiPromotionText extends HTMLElement {
   async connectedCallback() {
     let withLearnMore = this.attributes?.withLearnMore?.value;
-    let merchantId = this.attributes?.merchantId?.value;
+    let wafiSecretKey = this.attributes?.wafiSecretKey?.value;
 
     console.log(
       "you have selected withLearnMore: ",
@@ -463,16 +492,19 @@ class wafiPromotionText extends HTMLElement {
     let merchantPromotions;
     // call api here to get merchants promotion
     async function getPromotions() {
-      let url = `https://dev-api.wafi.cash/api/v1/checkout/clientpromotion/${merchantId}`;
+      let url = `https://dev-api.wafi.cash/api/v1/checkout/clientpromotion`;
       try {
-        let res = await fetch(url);
+        let res = await fetch(url, {
+          // mode: "no-cors",
+          headers: { Authorization: "Bearer " + wafiSecretKey },
+        });
         return await res.json();
       } catch (error) {
         console.log(error);
       }
     }
 
-    if (merchantId) {
+    if (wafiSecretKey) {
       merchantPromotions = await getPromotions();
     }
     let promotionText;

@@ -86,6 +86,7 @@ const wafiBtnStyles = { black: "white", white: "black" };
 
 class WafiBtn extends HTMLElement {
   connectedCallback() {
+    let outline = this.attributes?.outline?.value;
     let btnType = this.attributes?.btnType?.value;
     const btnText = wafiBtnTypes[btnType] || "";
 
@@ -118,6 +119,7 @@ class WafiBtn extends HTMLElement {
         border-radius: 5px;
         border: 0px;
         cursor: pointer;
+        border: ${outline !== undefined ? "4px solid black" : "0px"};
         font-family: OctarineBold; ">
        <p> ${btnText}</p>
         <span style="margin-left: 10px; width: 30%;">

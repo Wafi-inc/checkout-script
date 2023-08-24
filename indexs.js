@@ -346,30 +346,22 @@ style="
 </div>
 </div>`;
 
-const learnMoreTypes = {
-  pay: "Pay with Wafi. Earn cashback everytime.",
-  checkout: "Checkout with Wafi. Earn cashback everytime. ",
-  donate: "Donate with Wafi. Earn cashback. ",
-};
 
 class WafiCheckoutLearnMore extends HTMLElement {
   connectedCallback() {
-    let type = this.attributes.type.value;
-    const text = learnMoreTypes[type];
-
     this.innerHTML = `
-
     <p style="
     color: black;
-    font-size: 14px;
-    font-family: Roboto;
+    font-size: 16px;
+    font-family: OctarineLight;
     text-align: left;
-    margin: 8px 0px;"
+    margin: 0px 0px;"
+    
     >
-      ${text}
+      
       <span class="wafi-learn-more-open"
-      style="margin-left: 2px; cursor: pointer; text-decoration: underline;">
-      Learn more.
+      style="margin-left: 4px; cursor: pointer; text-decoration: underline;">
+      Learn more
       </span>
       </p>
       ${LearnMoreModal}
@@ -476,71 +468,52 @@ customElements.define("wafi-mark", WafiMark);
 
 class wafiPromotionText extends HTMLElement {
   async connectedCallback() {
-    let withLearnMore = this.attributes?.withLearnMore?.value;
     let wafiSecretKey = this.attributes?.wafiSecretKey?.value;
 
-    console.log(
-      "you have selected withLearnMore: ",
-      withLearnMore,
-      typeof withLearnMore
-    );
-
-    if (withLearnMore === undefined) {
-      withLearnMore = false;
-    } else {
-      withLearnMore = true;
-    }
 
     let merchantPromotions;
     // call api here to get merchants promotion
     async function getPromotions() {
-      let url = `https://dev-api.wafi.cash/api/v1/checkout/clientpromotion`;
+      let url = `https://dev-api.wafi.cash/api/v1/checkout/client/best-promotion`;
       try {
         let res = await fetch(url, {
           // mode: "no-cors",
           headers: { Authorization: "Bearer " + wafiSecretKey },
         });
-        return await res.json();
+        if (res.status == 200){
+          return await res.json();
+        }
+        return null
       } catch (error) {
         console.log(error);
       }
     }
-
+    let promotion
     if (wafiSecretKey) {
-      merchantPromotions = await getPromotions();
+      promotion = await getPromotions();
+      console.log(promotion)
     }
     let promotionText;
-    if (merchantPromotions?.data?.length > 0) {
-      const promotion = merchantPromotions?.data.filter(
-        (p) => p?.min_spend_amount > 0
-      )[0];
 
+    if (promotion) {
       promotionText =
         promotion?.type === "percent"
-          ? `Get ${promotion?.percent}% cash back`
-          : `Get $${promotion?.amount} cash back`;
+          ? `Get ${promotion?.percent}% cash back with Wafi.`
+          : `Get $${promotion?.amount} cash back with Wafi.`;
       if (promotion?.min_spend_amount) {
-        promotionText += ` when you spend $${promotion?.min_spend_amount}`;
+        promotionText = promotionText.substring(0, promotionText.length-1) + `, when you spend $${promotion?.min_spend_amount}`;
       }
     } else {
-      promotionText = "Get 0.75% cash back";
+      promotionText = "Get 0.75% cash back with Wafi.";
     }
 
     console.log("merchantPromotions", merchantPromotions);
 
     this.innerHTML = `
     <div style="display: flex; align-items: center; font-family: OctarineLight; font-size: 16px;">
-      <span style="color: #2C39D1; cursor:pointer; margin-left:3px;"> ${promotionText}</span>
-          ${
-            withLearnMore
-              ? `<span class="wafi-learn-more-open"
-      style="margin-left: 8px; cursor: pointer; text-decoration: underline; color: #2C39D1;">
-      Learn more.
-      </span>`
-              : ``
-          }
-      </div>
-      ${LearnMoreModal}`;
+      <span style="cursor:pointer; margin-left:3px;"> ${promotionText}</span>
+    </div>
+    `;
   }
 }
 

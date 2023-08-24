@@ -7,10 +7,12 @@
   </head>
   <body>
     <h2>Home Page Banner</h2>
-    <wafi-checkout-learn-more type="pay"></wafi-checkout-learn-more>
-    <wafi-checkout-learn-more type="checkout"></wafi-checkout-learn-more>
-    <wafi-checkout-learn-more type="donate"></wafi-checkout-learn-more>
-    <wafi-checkout-learn-more type="donate"></wafi-checkout-learn-more>
+   
+    <wafi-checkout-learn-more></wafi-checkout-learn-more>
+    <br />
+    <wafi-checkout-learn-more></wafi-checkout-learn-more>
+    <br />
+    <wafi-checkout-learn-more></wafi-checkout-learn-more>
 
     <h2>Wafi Mark</h2>
     <wafi-mark styleType="white" width="120"></wafi-mark>
@@ -19,12 +21,19 @@
     <wafi-mark></wafi-mark>
 
     <h2>Wafi promotion text</h2>
+
+    <div style="display: flex; align-items: center;">
+      <wafi-promotion-text ></wafi-promotion-text>
+      <wafi-checkout-learn-more ></wafi-checkout-learn-more>
+    </div>
+    <br />
     <wafi-promotion-text
       wafiSecretKey="848AB6960ECA47099079C93868CD1E81"
-      withLearnMore
-    ></wafi-promotion-text>
-    <br />
-    <wafi-promotion-text withLearnMore="hello"></wafi-promotion-text>
+      ></wafi-promotion-text>
+      <br />
+      <wafi-promotion-text
+      wafiSecretKey="6FEEECD7E4524A53A88E5E4651F873AA"
+     ></wafi-promotion-text>
     <br />
     <wafi-promotion-text></wafi-promotion-text>
 

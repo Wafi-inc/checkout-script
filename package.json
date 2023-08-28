@@ -1,6 +1,6 @@
 {
   "name": "wafi-checkout",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "launch script for checkout ui",
   "main": "dist/index.min.js",
   "scripts": {

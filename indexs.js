@@ -360,7 +360,7 @@ class WafiCheckoutLearnMore extends HTMLElement {
       
       <span class="wafi-learn-more-open"
       style="margin-left: 4px; cursor: pointer; text-decoration: underline;">
-      Learn more
+      Learn most
       </span>
       </p>
       ${LearnMoreModal}

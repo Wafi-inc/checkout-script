@@ -346,7 +346,6 @@ style="
 </div>
 </div>`;
 
-
 class WafiCheckoutLearnMore extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
@@ -361,7 +360,7 @@ class WafiCheckoutLearnMore extends HTMLElement {
       
       <span class="wafi-learn-more-open"
       style="margin-left: 4px; cursor: pointer; text-decoration: underline;">
-      Learn more
+      Learn most
       </span>
       </p>
       ${LearnMoreModal}
@@ -470,7 +469,6 @@ class wafiPromotionText extends HTMLElement {
   async connectedCallback() {
     let wafiSecretKey = this.attributes?.wafiSecretKey?.value;
 
-
     let merchantPromotions;
     // call api here to get merchants promotion
     async function getPromotions() {
@@ -480,18 +478,18 @@ class wafiPromotionText extends HTMLElement {
           // mode: "no-cors",
           headers: { Authorization: "Bearer " + wafiSecretKey },
         });
-        if (res.status == 200){
+        if (res.status == 200) {
           return await res.json();
         }
-        return null
+        return null;
       } catch (error) {
         console.log(error);
       }
     }
-    let promotion
+    let promotion;
     if (wafiSecretKey) {
       promotion = await getPromotions();
-      console.log(promotion)
+      console.log(promotion);
     }
     let promotionText;
 
@@ -501,7 +499,9 @@ class wafiPromotionText extends HTMLElement {
           ? `Get ${promotion?.percent}% cash back with Wafi.`
           : `Get $${promotion?.amount} cash back with Wafi.`;
       if (promotion?.min_spend_amount) {
-        promotionText = promotionText.substring(0, promotionText.length-1) + `, when you spend $${promotion?.min_spend_amount}`;
+        promotionText =
+          promotionText.substring(0, promotionText.length - 1) +
+          `, when you spend $${promotion?.min_spend_amount}`;
       }
     } else {
       promotionText = "Get 0.75% cash back with Wafi.";

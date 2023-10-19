@@ -467,17 +467,17 @@ customElements.define("wafi-mark", WafiMark);
 
 class wafiPromotionText extends HTMLElement {
   async connectedCallback() {
-    let wafiSecretKey = this.attributes?.wafiSecretKey?.value;
-
+    let clientID = this.attributes?.clientID?.value;
+    let wafiDev = this.attributes?.wafiDev?.value;
     let merchantPromotions;
     // call api here to get merchants promotion
     async function getPromotions() {
-      let url = `https://dev-api.wafi.cash/api/v1/checkout/client/best-promotion`;
+      let url = wafiDev
+        ? `https://dev-api.wafi.cash/api/v1/checkout/client/${clientID}/best-promotion`
+        : `https://api.wafi.cash/api/v1/checkout/client/${clientID}/best-promotion`;
+
       try {
-        let res = await fetch(url, {
-          // mode: "no-cors",
-          headers: { Authorization: "Bearer " + wafiSecretKey },
-        });
+        let res = await fetch(url, {});
         if (res.status == 200) {
           return await res.json();
         }
@@ -487,7 +487,8 @@ class wafiPromotionText extends HTMLElement {
       }
     }
     let promotion;
-    if (wafiSecretKey) {
+
+    if (clientID) {
       promotion = await getPromotions();
       console.log(promotion);
     }

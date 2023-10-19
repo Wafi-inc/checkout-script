@@ -7,7 +7,7 @@
   </head>
   <body>
     <h2>Home Page Banner</h2>
-   
+
     <wafi-checkout-learn-more></wafi-checkout-learn-more>
     <br />
     <wafi-checkout-learn-more></wafi-checkout-learn-more>
@@ -22,18 +22,15 @@
 
     <h2>Wafi promotion text</h2>
 
-    <div style="display: flex; align-items: center;">
-      <wafi-promotion-text ></wafi-promotion-text>
-      <wafi-checkout-learn-more ></wafi-checkout-learn-more>
+    <div style="display: flex; align-items: center">
+      <wafi-promotion-text></wafi-promotion-text>
+      <wafi-checkout-learn-more></wafi-checkout-learn-more>
     </div>
     <br />
     <wafi-promotion-text
-      wafiSecretKey="848AB6960ECA47099079C93868CD1E81"
-      ></wafi-promotion-text>
-      <br />
-      <wafi-promotion-text
-      wafiSecretKey="6FEEECD7E4524A53A88E5E4651F873AA"
-     ></wafi-promotion-text>
+      clientId="4a358121-7524-4198-83db-891908bee76f"
+      wafiDev="true"
+    ></wafi-promotion-text>
     <br />
     <wafi-promotion-text></wafi-promotion-text>
 
@@ -41,6 +38,8 @@
     <div>
       <apple-pay-button buttonstyle="black" type="buy"></apple-pay-button>
     </div>
+
+    <wafi-btn btnstyle="black" btnType="tip"></wafi-btn>
 
     <div style="display: flex" class="btns-container">
       <div class="left-container">

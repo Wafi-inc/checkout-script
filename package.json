@@ -1,6 +1,6 @@
 {
   "name": "wafi-checkout",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "launch script for checkout ui",
   "main": "dist/index.min.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "css-loader": "^6.8.1",
     "style-loader": "^3.3.3",
     "terser-webpack-plugin": "^5.3.9",
-    "webpack": "^5.88.2",
+    "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
   }
 }

@@ -502,7 +502,7 @@ class wafiPromotionText extends HTMLElement {
       if (promotion?.min_spend_amount) {
         promotionText =
           promotionText.substring(0, promotionText.length - 1) +
-          `, when you spend $${promotion?.min_spend_amount}`;
+          `, when you spend $${(promotion?.min_spend_amount / 100).toFixed(2)}`;
       }
     } else {
       promotionText = "Get 0.75% cash back with Wafi.";

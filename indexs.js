@@ -87,7 +87,7 @@ const wafiBtnStyles = { black: "white", white: "black" };
 class WafiBtn extends HTMLElement {
   connectedCallback() {
     let outline = this.attributes?.outline?.value;
-    let btnType = this.attributes?.btnType?.value;
+    let btnType = this.attributes?.btnType?.value || "wafi";
     const btnText = wafiBtnTypes[btnType] || "";
 
     let btnstyle = this.attributes?.btnstyle?.value;
@@ -103,31 +103,20 @@ class WafiBtn extends HTMLElement {
     this.style.height = "50px";
     this.style.margin = "5px";
     this.style.display = "flex";
+    this.style.fontSize = "16px"
+    
+    let baseUrl = `../assets/btns/${btnstyle === "black" ? btnType+"-"+btnstyle : btnType}.svg`
 
     this.innerHTML = `
-
     <button style="
-    color: ${wafiBtnStyles[btnstyle]};
-        background-color: ${btnstyle};
         width: 100%;
         height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 16px;
-        font-weight: bold;
-        border-radius: 5px;
-        border: 0px;
+        border: 0;
+        background: transparent;
         cursor: pointer;
-        border: ${outline !== undefined ? "4px solid black" : "0px"};
-        font-family: OctarineBold; ">
-       <p> ${btnText}</p>
-        <span style="margin-left: 10px; width: 30%;">
-      <img width="100%" src=${
-        btnstyle == "black" ? wafiLogoWhite : wafiLogo
-      } alt="" />
-      </span>
-      </button>
+        ">
+      <img width="100%"  height="100%" src=${ baseUrl  } alt="" />
+    </button>
       `;
   }
 }

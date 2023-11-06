@@ -105,7 +105,8 @@ class WafiBtn extends HTMLElement {
     this.style.display = "flex";
     this.style.fontSize = "16px"
     
-    let baseUrl = `../assets/btns/${btnstyle === "black" ? btnType+"-"+btnstyle : btnType}.svg`
+    let s3Url = "https://s3.us-east-2.amazonaws.com/checkoutscript.wafi.cash/btns/"
+    let baseUrl = `${s3Url}${btnstyle === "black" ? btnType+"-"+btnstyle : btnType}.svg`
 
     this.innerHTML = `
     <button style="

@@ -126,7 +126,7 @@ customElements.define("wafi-btn", WafiBtn);
 // *******************************
 // Wafi Checkout Learn More
 // *******************************
-const LearnMoreModal = `
+const getLearnMoreModal = (merchantName)=>`
 <div
 class="learn-more-container"
 style="
@@ -193,7 +193,7 @@ style="
       <img src=${wafiLogo} width="80px" alt="wafi logo" />
     </span>
     <span style="padding-bottom: 5px; font-size: 14px">
-      In partnership with <b>Cerebelly.</b>
+      In partnership with <b>${merchantName}</b>
     </span>
   </div>
   <div
@@ -205,7 +205,7 @@ style="
     "
   >
     <div>
-      Cerebelly has partnered with Wafi to enable you to pay securely with
+      ${merchantName} has partnered with Wafi to enable you to pay securely with
       your bank account and earn loyalty cash backs.
     </div>
     <div
@@ -338,22 +338,21 @@ style="
 
 class WafiCheckoutLearnMore extends HTMLElement {
   connectedCallback() {
+    let merchantName = this.attributes?.merchantName?.value || "-"
+    const learnMoreModal = getLearnMoreModal(merchantName)
     this.innerHTML = `
     <p style="
     color: black;
     font-size: 16px;
     font-family: OctarineLight;
     text-align: left;
-    margin: 0px 0px;"
-    
-    >
-      
+    margin: 0px 0px;">
       <span class="wafi-learn-more-open"
       style="margin-left: 4px; cursor: pointer; text-decoration: underline;">
       Learn more
       </span>
       </p>
-      ${LearnMoreModal}
+      ${learnMoreModal}
     `;
   }
 }
@@ -362,14 +361,12 @@ customElements.define("wafi-checkout-learn-more", WafiCheckoutLearnMore);
 
 function OpenWafiLearnMore(params) {
   console.log("TOGGLING LEARN MORE OPEN");
-  document.getElementsByClassName("learn-more-container")[0].style.display =
-    "flex";
+  params.target.parentNode.nextElementSibling.style.display = "flex";
 }
 
 function closeWafiLearnMore(params) {
   console.log("TOGGLING LEARN MORE CLOSE");
-  document.getElementsByClassName("learn-more-container")[0].style.display =
-    "none";
+  params.target.parentNode.parentNode.style.display = "none";
 }
 
 window.addEventListener("load", (event) => {

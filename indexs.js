@@ -103,10 +103,13 @@ class WafiBtn extends HTMLElement {
     this.style.height = "50px";
     this.style.margin = "5px";
     this.style.display = "flex";
-    this.style.fontSize = "16px"
-    
-    let s3Url = "https://s3.us-east-2.amazonaws.com/checkoutscript.wafi.cash/btns/"
-    let baseUrl = `${s3Url}${btnstyle === "black" ? btnType+"-"+btnstyle : btnType}.svg`
+    this.style.fontSize = "16px";
+
+    let s3Url =
+      "https://s3.us-east-2.amazonaws.com/checkoutscript.wafi.cash/btns/";
+    let baseUrl = `${s3Url}${
+      btnstyle === "black" ? btnType + "-" + btnstyle : btnType
+    }.svg`;
 
     this.innerHTML = `
     <button style="
@@ -116,7 +119,7 @@ class WafiBtn extends HTMLElement {
         background: transparent;
         cursor: pointer;
         ">
-      <img width="100%"  height="100%" src=${ baseUrl  } alt="" />
+      <img width="100%"  height="100%" src=${baseUrl} alt="" />
     </button>
       `;
   }
@@ -126,7 +129,7 @@ customElements.define("wafi-btn", WafiBtn);
 // *******************************
 // Wafi Checkout Learn More
 // *******************************
-const getLearnMoreModal = (merchantName)=>`
+const getLearnMoreModal = (merchantName) => `
 <div
 class="learn-more-container"
 style="
@@ -338,8 +341,8 @@ style="
 
 class WafiCheckoutLearnMore extends HTMLElement {
   connectedCallback() {
-    let merchantName = this.attributes?.merchantName?.value || "-"
-    const learnMoreModal = getLearnMoreModal(merchantName)
+    let merchantName = this.attributes?.merchantName?.value || "Our company";
+    const learnMoreModal = getLearnMoreModal(merchantName);
     this.innerHTML = `
     <p style="
     color: black;
@@ -380,7 +383,9 @@ window.addEventListener("load", (event) => {
     item.addEventListener("click", closeWafiLearnMore);
   }
 
-  let moreCloseBn = document.getElementsByClassName("wafi-learn-more-close-btn");
+  let moreCloseBn = document.getElementsByClassName(
+    "wafi-learn-more-close-btn"
+  );
   for (let item of moreCloseBn) {
     item.addEventListener("click", closeWafiLearnMoreBtn);
   }

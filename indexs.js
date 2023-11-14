@@ -316,7 +316,7 @@ style="
    
     </div>
     <button
-    class="wafi-learn-more-close"
+    class="wafi-learn-more-close-btn"
       style="
         width: 100%;
         background-color: black;
@@ -369,10 +369,20 @@ function closeWafiLearnMore(params) {
   params.target.parentNode.parentNode.style.display = "none";
 }
 
+function closeWafiLearnMoreBtn(params) {
+  console.log("TOGGLING LEARN MORE CLOSE");
+  params.target.parentNode.parentNode.parentNode.style.display = "none";
+}
+
 window.addEventListener("load", (event) => {
   let moreClose = document.getElementsByClassName("wafi-learn-more-close");
   for (let item of moreClose) {
     item.addEventListener("click", closeWafiLearnMore);
+  }
+
+  let moreCloseBn = document.getElementsByClassName("wafi-learn-more-close-btn");
+  for (let item of moreCloseBn) {
+    item.addEventListener("click", closeWafiLearnMoreBtn);
   }
 
   let moreOpen = document.getElementsByClassName("wafi-learn-more-open");

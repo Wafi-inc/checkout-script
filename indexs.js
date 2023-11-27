@@ -297,7 +297,7 @@ style="
                       border-radius: 5px;
                       border: 2.5px solid black;
                       margin-left: 8px;
-                      cursor: pointer;">
+                      cursor: pointer;" type="button">
                       <img width="50px" src=${wafiLogo} alt="" />
                       </button>
               </div>
@@ -332,6 +332,7 @@ style="
         margin-top: 20px;
         cursor: pointer;
       "
+      type="button"
     >
       Got it!
     </button>
@@ -453,7 +454,7 @@ class WafiMark extends HTMLElement {
         font-weight: bold;
         border-radius: 5px;
         border: ${styleType === "white" ? "4px solid black" : "0px"};
-        cursor: pointer;">
+        cursor: pointer;" type="button" >
         <img width="90%" src=${
           styleType == "black" ? wafiLogoWhite : wafiLogo
         } alt="" />

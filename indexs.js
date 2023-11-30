@@ -109,7 +109,7 @@ class WafiBtn extends HTMLElement {
       "https://s3.us-east-2.amazonaws.com/checkoutscript.wafi.cash/btns/";
     let baseUrl = `${s3Url}${
       btnstyle === "black" ? btnType + "-" + btnstyle : btnType
-    }.svg`;
+    }.png`;
 
     this.innerHTML = `
     <button style="

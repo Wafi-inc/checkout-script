@@ -17,15 +17,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      # Authenticate with Google Cloud
+      - id: auth
+        uses: google-github-actions/auth@v2
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          credentials_json: '${{ secrets.GCP_SA_KEY_DEV }}'
+
+      # Set up Cloud SDK
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
         
-      - name: Deploy app build to S3 bucket
-        run:  aws s3 cp . s3://checkoutscript.wafi.cash/ --exclude "*" --include "*.js" --include "assets/*" --include "btns/*" --recursive
         
-      - name: Invalidate aws cloudfront
-        run: aws cloudfront create-invalidation  --distribution-id E3V8EN54PNE3W3	 --paths "/*"
+      # Upload app build to GCS bucket
+      - name: Deploy app build to GCS bucket
+        run: gsutil -m rsync -r -d build gs://account-dev.wafi.cash
+      # - name: Invalidate aws cloudfront
+      #   run: aws cloudfront create-invalidation  --distribution-id E2B6974GNHH8ZR --paths "/*"

@@ -28,6 +28,6 @@ jobs:
         uses: google-github-actions/setup-gcloud@v2     
       # Upload app build to GCS bucket
       - name: Deploy app build to GCS bucket
-        run: gsutil cp -r *.js gs://checkoutscript.wafi.cash/
+        run: gsutil cp -r *.js btns/* gs://checkoutscript.wafi.cash/
       - name:  Invalidate GCP CDN
         run:   gcloud compute url-maps invalidate-cdn-cache cdn-url-map-production --async  --host  checkoutscript.wafi.cash --path "/*"         

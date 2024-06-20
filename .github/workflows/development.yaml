@@ -23,17 +23,12 @@ jobs:
         with:
           credentials_json: '${{ secrets.GCP_SA_KEY_PROD }}'
 
-      # Set up Cloud SDK
+       # Set up Cloud SDK
       - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
-        
-        
+        uses: google-github-actions/setup-gcloud@v2     
       # Upload app build to GCS bucket
       - name: Deploy app build to GCS bucket
-        run: |
-          gsutil cp -r btns gs://checkoutscript.wafi.cash/
-          gsutil cp -r assets gs://checkoutscript.wafi.cash/
-          gsutil cp -r *.js gs://checkoutscript.wafi.cash/
+        run: gsutil cp -r *.js btns/* gs://checkoutscript.wafi.cash/
+      - name:  Invalidate GCP CDN
+        run:   gcloud compute url-maps invalidate-cdn-cache cdn-url-map-production --async  --host  checkoutscript.wafi.cash --path "/*"         
 
-      # - name: Invalidate aws cloudfront
-      #   run: aws cloudfront create-invalidation  --distribution-id E2B6974GNHH8ZR --paths "/*"

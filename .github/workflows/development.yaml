@@ -31,3 +31,4 @@ jobs:
         run: gsutil cp -r *.js btns/* gs://checkoutscript.wafi.cash/
       - name:  Invalidate GCP CDN
         run:   gcloud compute url-maps invalidate-cdn-cache cdn-url-map-production --async  --host  checkoutscript.wafi.cash --path "/*"         
+
